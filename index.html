@@ -18,6 +18,36 @@
     .dice {
         margin: 0 10px;
     }
+    body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.dice-container {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Allow dice images to wrap to the next line on smaller screens */
+}
+
+.dice {
+    margin: 10px; /* Add spacing between dice images */
+    width: 40%; /* Set the width of dice images to 40% of the container */
+    max-width: 150px; /* Set maximum width for dice images */
+}
+
+#sum {
+    margin-top: 20px; /* Add spacing between dice images and sum display */
+}
+
+@media screen and (max-width: 375px) {
+    /* Apply styles for screens with a maximum width of 375px (iPhone 6 portrait) */
+    .dice {
+        width: 80%; /* Reduce the width of dice images to 80% of the container */
+    }
+}
+
 </style>
 </head>
 <body>
@@ -82,4 +112,3 @@
     </script>
 </body>
 </html>
-
