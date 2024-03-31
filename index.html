@@ -4,10 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Magic Dice</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
 <style>
     body {
-        font-family: Arial, sans-serif;
+        font-family: 'Montserrat', sans-serif;
         text-align: center;
+        background-color: #1A1A1A;
+        color:darkgray;
     }
     .dice-container {
         margin-top: 50px;
@@ -29,6 +32,20 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap; /* Allow dice images to wrap to the next line on smaller screens */
+}
+
+.btn {
+
+	background-color: #5b277d;
+	
+	border: 1px solid #5b277d;
+	
+	border-radius: 10px;
+	
+	height: 40px;
+	
+	width: 150px;
+
 }
 
 .dice {
@@ -54,11 +71,11 @@
     <h1><span id="hiddenButton">M</span>agic Dice</h1> <!-- Make the "M" in "Magic Dice" the hidden button -->
     <p>Click the button below to roll the dice!</p>
     <div class="dice-container">
-        <img id="dice1" class="dice" src="placeholder.png" alt="Dice 1">
-        <img id="dice2" class="dice" src="placeholder.png" alt="Dice 2">
+        <img id="dice1" class="dice" src="None" alt="Dice 1">
+        <img id="dice2" class="dice" src="None" alt="Dice 2">
     </div>
     <p id="sum">Sum: ?</p>
-    <button id="rollButton">Roll Dice</button>
+    <button id="rollButton" class="btn">Roll Dice</button>
 
     <script>
         var consecutiveTaps = 0;
