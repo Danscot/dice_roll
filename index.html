@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magic Dice</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    .dice-container {
+        margin-top: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .dice {
+        margin: 0 10px;
+    }
+</style>
+</head>
+<body>
+    <h1><span id="hiddenButton">M</span>agic Dice</h1> <!-- Make the "M" in "Magic Dice" the hidden button -->
+    <p>Click the button below to roll the dice!</p>
+    <div class="dice-container">
+        <img id="dice1" class="dice" src="placeholder.png" alt="Dice 1">
+        <img id="dice2" class="dice" src="placeholder.png" alt="Dice 2">
+    </div>
+    <p id="sum">Sum: ?</p>
+    <button id="rollButton">Roll Dice</button>
+
+    <script>
+        var consecutiveTaps = 0;
+        var tapsRequired = 1; // Change this to adjust the number of taps required
+        var nextRollIsSpecial = false; // Flag to determine if the next roll should be special (two 1s or two 6s)
+
+        document.getElementById("rollButton").addEventListener("click", function() {
+            var dice1 = document.getElementById("dice1");
+            var dice2 = document.getElementById("dice2");
+            var sumDisplay = document.getElementById("sum");
+
+            dice1.src = "dice.gif"; // Show rolling animation for dice 1
+            dice2.src = "dice.gif"; // Show rolling animation for dice 2
+
+            setTimeout(function() {
+                var result1, result2;
+                if (nextRollIsSpecial) {
+                    // Special case: both dice show either 1 or 6
+                    var specialNumber = nextRollIsSpecial === "one" ? 1 : 6;
+                    result1 = specialNumber;
+                    result2 = specialNumber;
+                    nextRollIsSpecial = false; // Reset flag
+                } else {
+                    // Normal case: roll two random numbers
+                    result1 = Math.floor(Math.random() * 6) + 1;
+                    result2 = Math.floor(Math.random() * 6) + 1;
+                    // Check if the result is either 1 or 6
+                    if ((result1 === 1 || result1 === 6) && (result2 === 1 || result2 === 6)) {
+                        nextRollIsSpecial = result1 === 1 ? "one" : "six"; // Set flag for the next roll to be special
+                    }
+                }
+
+                dice1.src = result1 + ".png"; // Display the dice 1 image
+                dice2.src = result2 + ".png"; // Display the dice 2 image
+
+                var sum = result1 + result2; // Calculate the sum of the dice
+                sumDisplay.textContent = "Sum: " + sum; // Display the sum
+            }, 1000); // Wait for 1 second (duration of the rolling animation)
+        });
+
+        // Event listener for the hidden button (the "M" in "Magic Dice")
+        document.getElementById("hiddenButton").addEventListener("click", function() {
+            consecutiveTaps++;
+            if (consecutiveTaps >= tapsRequired) {
+                // Reset tap count
+                consecutiveTaps = 0;
+                // Set flag to indicate next roll should be special (two 1s or two 6s)
+                nextRollIsSpecial = Math.random() < 0.5 ? "one" : "six";
+            }
+        });
+    </script>
+</body>
+</html>
+
